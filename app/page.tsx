@@ -1,8 +1,7 @@
 "use client";
 
 import AboutSection from './components/sections/AboutSection';
-import AppsSection from './components/sections/AppsSection';
-import ProjectsSection from './components/sections/ProjectsSection';
+import WorksSection from './components/sections/WorksSection';
 import ContactSection from './components/sections/ContactSection';
 
 export default function Home() {
@@ -34,8 +33,7 @@ export default function Home() {
       `}</style>
       <div className="scroll-container">
         <AboutSection />
-        <AppsSection />
-        <ProjectsSection />
+        <WorksSection />
         <ContactSection />
       </div>
     </>
