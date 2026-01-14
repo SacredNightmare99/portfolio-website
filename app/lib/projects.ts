@@ -3,7 +3,7 @@ export type Project = {
   type: 'mobile' | 'web'; 
   title: string;
   description: string;
-  imageUrl?: string;
+  imageUrl: string;
   githubLink?: string; 
   liveLink?: string;
 };
