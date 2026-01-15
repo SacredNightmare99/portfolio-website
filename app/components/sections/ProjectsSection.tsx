@@ -17,7 +17,7 @@ const layouts = [
 ];
 
 const ProjectsSection = () => {
-  const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [activeProject, setActiveProject] = useState<number | null>(null);
 
   return (
     <ScrollSection>
