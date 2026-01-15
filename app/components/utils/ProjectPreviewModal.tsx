@@ -9,20 +9,15 @@ interface Props {
 
 const ProjectPreviewModal: React.FC<Props> = ({ project, onClose }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-      <div className="bg-neutral-900 max-w-2xl w-full rounded-xl overflow-hidden shadow-xl relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+      onClick={onClose}>
+      <div className="bg-neutral-900 max-w-2xl w-full rounded-xl overflow-hidden shadow-xl relative"
+        onClick={(e) => e.stopPropagation()}>
         
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10
-    text-white
-    bg-black/60
-    hover:bg-black/80
-    rounded-full
-    w-9 h-9
-    flex items-center justify-center
-    transition"
+          className="absolute top-4 right-4 z-10 text-white bg-black/60 hover:bg-black/80 rounded-full w-9 h-9 flex items-center justify-center transition"
         >
           ✕
         </button>
