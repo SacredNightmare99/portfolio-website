@@ -17,7 +17,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({ children }) => {
         entry.target.classList.toggle("is-visible", entry.isIntersecting);
       },
       {
-        threshold: 0.25,
+        threshold: 0.18,
       }
     );
 

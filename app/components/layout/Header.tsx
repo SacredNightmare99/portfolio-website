@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 
 const sections = ["about", "projects", "contact"];
 
+const identityMap: Record<string, string> = {
+  projects: "sacred_nightmare",
+};
+
 const NavLink = ({
   href,
   active,
@@ -73,8 +77,15 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50">
       <nav className="max-w-7xl mx-auto px-4">
         <div className="h-14 flex items-center justify-between bg-black/40 backdrop-blur-lg border border-neutral-800 rounded-b-xl px-4 font-mono">
-          <span className="text-sm text-white">
-            ishaan_jindal
+          <span
+            key={active}
+            className="
+              text-sm text-white font-mono
+              transition-all duration-300
+              animate-identity
+            "
+          >
+            {identityMap[active] ?? "ishaan_jindal"}
           </span>
 
           <div className="hidden sm:flex gap-6">
