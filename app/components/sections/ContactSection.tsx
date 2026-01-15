@@ -1,61 +1,115 @@
+"use client";
+
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import ScrollSection from "../utils/ScrollSection";
 
+type Status = "idle" | "sending" | "success" | "error";
+
 const ContactSection = () => {
+  const [status, setStatus] = useState<Status>("idle");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status !== "idle") return;
+
+    setStatus("sending");
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formData,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
+  };
+
   return (
     <ScrollSection>
-      <div className="flex flex-col items-center">
-        <h2 className="text-3xl font-bold mb-8">Contact Me</h2>
+      <div className="flex flex-col items-center font-mono">
+        <h2 className="text-3xl font-semibold mb-2">
+          Initiate Contact
+        </h2>
+        <p className="text-xs text-neutral-500 mb-8">
+          POST /contact
+        </p>
 
-        <form className="w-full max-w-xl bg-neutral-900 rounded-xl p-6 shadow-lg">
-          {/* Name + Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wide mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                placeholder="Jane Doe"
-                className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wide mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                placeholder="jane@example.com"
-                className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
-              />
-            </div>
-          </div>
-
-          {/* Message */}
-          <div className="mb-6">
-            <label className="block text-xs font-semibold uppercase tracking-wide mb-2">
-              Message
-            </label>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-xl bg-neutral-900 border border-neutral-800 rounded-xl p-6"
+        >
+          <div className="space-y-4 mb-6">
+            <input
+              name="name"
+              required
+              placeholder="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm"
+            />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm"
+            />
             <textarea
-              rows={5}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600 resize-none"
+              name="message"
+              required
+              placeholder="message"
+              rows={4}
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm resize-none"
             />
           </div>
 
-          {/* Button */}
-          <button
-            type="button"
-            className="
-              w-full
-              bg-red-600 hover:bg-red-700
-              text-white font-semibold
-              py-3 rounded
-              transition
-            "
-          >
-            Send Message
-          </button>
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-neutral-500">
+              status:{" "}
+              <span
+                className={
+                  status === "success"
+                    ? "text-green-500"
+                    : status === "sending"
+                    ? "text-yellow-500"
+                    : status === "error"
+                    ? "text-red-500"
+                    : "text-neutral-400"
+                }
+              >
+                {status}
+              </span>
+            </span>
+
+            <button
+              disabled={status === "sending"}
+              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white"
+            >
+              Send Request
+            </button>
+          </div>
         </form>
       </div>
     </ScrollSection>

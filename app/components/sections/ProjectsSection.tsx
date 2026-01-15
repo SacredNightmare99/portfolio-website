@@ -21,20 +21,34 @@ const ProjectsSection = () => {
 
   return (
     <ScrollSection>
-      <div className="grid grid-cols-2 md:grid-cols-5 auto-rows-[140px] gap-4 max-w-6xl mx-auto px-4">
-        {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className={`${layouts[index % layouts.length]} relative `}
-          >
-            <ProjectTile
-              project={project}
-              onClick={() => setActiveProject(index)}
-            />
-          </div>
-        ))}
+      <div className="w-full max-w-6xl mx-auto px-4 font-mono">
+        {/* Header */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-white">
+            projects()
+          </h2>
+          <p className="text-xs text-neutral-500">
+            GET /projects ({projects.length} items)
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-5 auto-rows-[140px] gap-4">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={`${layouts[index % layouts.length]} relative`}
+            >
+              <ProjectTile
+                project={project}
+                onClick={() => setActiveProject(index)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Modal */}
       <AnimatePresence>
         {activeProject !== null && (
           <ProjectPreviewModal
