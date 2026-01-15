@@ -66,7 +66,7 @@ h6 {
 
   opacity: 0;
   transition: opacity 0.6s ease, transform 0.6s ease;
-  transform: translateY(24px);
+  transform: translateY(40px);
 }
 
 .scroll-section.is-visible {
@@ -102,4 +102,20 @@ textarea {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+
+  .scroll-container {
+    scroll-snap-type: none;
+  }
+
+  .scroll-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 4rem 0;
+  }
 }

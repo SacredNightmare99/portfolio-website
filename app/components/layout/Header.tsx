@@ -77,7 +77,7 @@ const Header = () => {
             ishaan_jindal
           </span>
 
-          <div className="flex gap-6">
+          <div className="hidden sm:flex gap-6">
             <NavLink href="#about" active={active === "about"}>
               about()
             </NavLink>
@@ -87,6 +87,9 @@ const Header = () => {
             <NavLink href="#contact" active={active === "contact"}>
               contact()
             </NavLink>
+          </div>
+          <div className="sm:hidden text-xs text-neutral-500 font-mono">
+            scroll ↓
           </div>
         </div>
       </nav>

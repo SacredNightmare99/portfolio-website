@@ -54,7 +54,8 @@ const ContactSection = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-xl bg-neutral-900 border border-neutral-800 rounded-xl p-6"
+          className="w-full max-w-xl bg-neutral-900 rounded-xl shadow-lg 
+            p-5 sm:p-6 md:p-8"
         >
           <div className="space-y-4 mb-6">
             <input
@@ -63,7 +64,7 @@ const ContactSection = () => {
               placeholder="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm"
+              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm text-base focus:outline-none focus:ring-2 focus:ring-red-600"
             />
             <input
               name="email"
@@ -72,7 +73,7 @@ const ContactSection = () => {
               placeholder="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm"
+              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm text-base focus:outline-none focus:ring-2 focus:ring-red-600"
             />
             <textarea
               name="message"
@@ -81,7 +82,7 @@ const ContactSection = () => {
               rows={4}
               value={formData.message}
               onChange={handleChange}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm resize-none"
+              className="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-sm resize-none text-base focus:outline-none focus:ring-2 focus:ring-red-600"
             />
           </div>
 
@@ -105,7 +106,7 @@ const ContactSection = () => {
 
             <button
               disabled={status === "sending"}
-              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white"
+              className="bg-red-600 hover:bg-red-700 px-4 py-3.5 sm:py-3 rounded text-white"
             >
               Send Request
             </button>

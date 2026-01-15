@@ -29,9 +29,10 @@ const AboutSection = () => {
           </span>
         </p>
 
-        {/* Optional short bio */}
-        <p className="max-w-md text-sm text-neutral-400 leading-relaxed">
+        {/* Short bio */}
+        <p className="max-w-sm md:max-w-md text-sm text-neutral-400 leading-relaxed">
           interests: problem_solving, implementation, execution
+          <br />
           focus: building working systems end-to-end
         </p>
       </div>

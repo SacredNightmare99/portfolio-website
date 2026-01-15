@@ -33,7 +33,12 @@ const ProjectsSection = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 auto-rows-[140px] gap-4">
+        <div className="
+          grid 
+          grid-cols-1 sm:grid-clos-2 md:grid-cols-5
+          auto-rows-[180px] md:auto-rows-[140px] 
+          gap-4
+        ">
           {projects.map((project, index) => (
             <div
               key={project.id}
