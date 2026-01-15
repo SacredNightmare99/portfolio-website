@@ -2,19 +2,16 @@
 
 import React from 'react';
 
-// A simple component for smooth scrolling
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const targetId = href.substring(1); // Get id from href (e.g., #about -> about)
+    const targetId = href.substring(1); 
     const targetElement = document.getElementById(targetId);
     
     if (targetElement) {
-      // Find the main scroll container
       const scrollContainer = document.querySelector('.scroll-container');
       if (scrollContainer) {
-        // Scroll the container, not the window
         scrollContainer.scrollTo({
           top: targetElement.offsetTop,
           behavior: 'smooth',
@@ -40,7 +37,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 bg-black/30 backdrop-blur-lg rounded-b-xl px-4">
           
-          {/* Left Side: Name (acts as a 'Home' button) */}
+          {/* Left Side: Name */}
           <div>
             <a
               href="#about"
@@ -56,7 +53,7 @@ const Header = () => {
           {/* Right Side: Navigation Links */}
           <div className="flex items-center space-x-4">
             <NavLink href="#about">About</NavLink>
-            <NavLink href="#works">Works</NavLink>
+            <NavLink href="#projects">Projects</NavLink>
             <NavLink href="#contact">Contact</NavLink>
           </div>
 

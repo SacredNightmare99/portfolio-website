@@ -39,8 +39,10 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({ children }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="scroll-section">
-      {children}
+    <section ref={sectionRef} className="scroll-section w-full justify-center">
+      <div className="w-full max-w-7xl px-4">
+        {children}
+      </div>
     </section>
   );
 };

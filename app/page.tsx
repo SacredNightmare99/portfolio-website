@@ -1,7 +1,7 @@
 "use client"
 
 import AboutSection from './components/sections/AboutSection';
-import WorksSection from './components/sections/WorksSection';
+import ProjectsSection from './components/sections/ProjectsSection';
 import ContactSection from './components/sections/ContactSection';
 
 export default function Home() {
@@ -10,15 +10,15 @@ export default function Home() {
       <div id="about">
         <AboutSection />
       </div>
-      {/*
-      <div id="works">
-        <WorksSection />
+
+      <div id="projects">
+        <ProjectsSection />
       </div>
 
       <div id="contact">
         <ContactSection />
       </div>
-      */}
+      
     </div>
   );
 }
