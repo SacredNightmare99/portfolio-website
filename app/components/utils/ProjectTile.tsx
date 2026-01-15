@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import type { Project } from "@/app/lib/projects";
 
@@ -9,15 +9,17 @@ interface ProjectTileProps {
 
 const ProjectTile: React.FC<ProjectTileProps> = ({ project, onClick }) => {
   return (
-    <button
+    <motion.button
+      layoutId={`project-${project.id}`}
       onClick={onClick}
       className="
         relative w-full h-full
         overflow-hidden rounded-lg
         bg-neutral-800
-        transition-transform duration-300
-        hover:scale-105 hover:z-10
+        hover:z-10
+        focus:outline-none
       "
+      whileHover={{ scale: 1.03 }}
     >
       <Image
         src={project.imageUrl}
@@ -26,10 +28,7 @@ const ProjectTile: React.FC<ProjectTileProps> = ({ project, onClick }) => {
         className="object-cover"
         unoptimized
       />
-
-      {/* subtle overlay on hover */}
-      <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity" />
-    </button>
+    </motion.button>
   );
 };
 
