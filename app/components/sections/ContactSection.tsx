@@ -112,6 +112,22 @@ const ContactSection = () => {
             </button>
           </div>
         </form>
+        <div className="mt-6 flex gap-6 text-sm font-mono text-neutral-400">
+          <a
+            href="https://github.com/SacredNightmare99"
+            target="_blank"
+            className="hover:text-white transition"
+          >
+            github →
+          </a>
+
+          <a
+            href="mailto:ishaanjindal2006@gmail.com"
+            className="hover:text-white transition"
+          >
+            email →
+          </a>
+        </div>
       </div>
     </ScrollSection>
   );
