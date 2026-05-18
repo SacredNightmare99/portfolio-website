@@ -3,11 +3,15 @@
 import React, { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Reveal from "../utils/Reveal";
-import { projects } from "@/app/lib/projects";
+import type { Project } from "@/app/lib/projects";
 import ProjectPreviewModal from "../utils/ProjectPreviewModal";
 import TextProjectCard from "../utils/TextProjectCard";
 
-const ProjectsSection = () => {
+type Props = {
+  projects: Project[];
+};
+
+const ProjectsSection = ({ projects }: Props) => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   return (

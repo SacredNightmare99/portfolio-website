@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
 // Routes that have CLI equivalents
 const CLI_ROUTES: Record<string, string> = {
@@ -16,9 +17,13 @@ const BROWSER_REDIRECTS: Record<string, string> = {
 };
 
 // Known routes that should NOT be redirected
-const KNOWN_ROUTES = new Set(["/", "/resume"]);
+const KNOWN_ROUTES = new Set(["/", "/resume", "/admin", "/admin/dashboard"]);
 
-export function middleware(req: NextRequest) {
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET ?? "dev-fallback-secret-change-me"
+);
+
+export async function middleware(req: NextRequest) {
   const ua = req.headers.get("user-agent") ?? "";
   const isCLI = /curl|wget|httpie|fetch|powershell/i.test(ua);
   const pathname = req.nextUrl.pathname;
@@ -37,6 +42,31 @@ export function middleware(req: NextRequest) {
     const response = NextResponse.rewrite(url);
     response.headers.set("x-cli-path", pathname);
     return response;
+  }
+
+  // Admin dashboard — require JWT authentication
+  if (pathname === "/admin/dashboard") {
+    const token = req.cookies.get("admin_token")?.value;
+    if (!token) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/admin";
+      return NextResponse.redirect(url);
+    }
+
+    try {
+      await jwtVerify(token, JWT_SECRET);
+    } catch {
+      const url = req.nextUrl.clone();
+      url.pathname = "/admin";
+      return NextResponse.redirect(url);
+    }
+
+    return NextResponse.next();
+  }
+
+  // Admin login page — pass through
+  if (pathname === "/admin") {
+    return NextResponse.next();
   }
 
   // Browser clients → redirect known section paths to /#section

@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { projects } from "@/app/lib/projects";
+import { getProjects } from "@/app/lib/projects";
 import { banner, heading, accent, muted, label, bullet, link, divider, nav, c } from "../../cli/render";
 
 export function GET(req: NextRequest) {
+  const projects = getProjects();
+
   const body = [
     "",
     banner(),

@@ -97,12 +97,3 @@ public/
 ├── resume.pdf             # Downloadable resume
 └── ascii-me.png           # ASCII portrait for hero section
 ```
-
-## Featured Projects
-
-| Project | Description |
-|---------|-------------|
-| **WeDroid** | Full-stack club management app (Flutter + Supabase) |
-| **Steal CSS** | Extracts any website's CSS and remixes it into a stranger design |
-| **SwiftWrite** | Local-first cross-platform Flutter writing app with Markdown, todos, and optional cloud sync |
-| **Code-Executor** | Secure isolated code execution service with JWT auth, rate limiting, Docker + gVisor sandbox, and monitoring |
